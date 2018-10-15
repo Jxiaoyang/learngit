@@ -1,0 +1,11 @@
+<!--pages/demand/demand.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <text>任务类型：</text><picker name="taskType" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">                <text> 当前选择：{{array[index]}}  </text>   
+</picker>
+<text>任务名称</text><input name="taskName"></input>
+<text>任务详细内容</text><textarea name="taskContent"></textarea>
+<text>任务需要人数</text><input name="taskPeople"></input>
+<text>佣金/人</text><input name="taskMoney"></input>
+<text>共{{sum}}</text>
+<button  form-type='submit'>提交</button>
+</form>

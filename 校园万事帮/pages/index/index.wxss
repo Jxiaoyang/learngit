@@ -1,0 +1,17 @@
+/**index.wxss**/
+#stu_id{
+  display: inline-block;
+  vertical-align: 30%;
+}
+#stu_in{
+  display: inline-block;
+  border:1px solid #666;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+#stu_pw{
+  display: inline-block;
+  border:1px solid #666;
+  border-radius: 30px;
+  padding-left: 10px;
+}

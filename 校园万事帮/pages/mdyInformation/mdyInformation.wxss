@@ -1,0 +1,49 @@
+/* pages/mdyInformation/mdyInformation.wxss */
+.class_img{
+  width:100%;
+  height:80px;
+  border: 1px solid #666;
+}
+.img_scale{
+  width:25%;
+  height: 80px;
+}
+.img_text{
+  border: 1px solid #333;
+  width:20%;
+  height:80px;
+  line-height: 80px;
+  text-align: center;
+  float:left;
+
+}
+.img_true{
+  width:25%;
+  height:80px;
+ border: 1px solid #555;
+ float:right;
+ margin-right:10px;
+ border-radius: 50%;
+}
+.class_name{
+  width:100%;
+  height:50px;
+  border: 1px solid #666;
+}
+.name_text{
+  border: 1px solid #333;
+  width:20%;
+  height:50px;
+  line-height: 50px;
+  text-align: center;
+  float:left;
+}
+.name_true{
+   border: 1px solid #333;
+  width:70%;
+  height:50px;
+  line-height: 50px;
+  padding-right:10px;
+  float:right;
+  text-align: right;
+}

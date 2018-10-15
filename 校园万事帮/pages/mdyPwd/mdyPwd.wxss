@@ -1,0 +1,27 @@
+.outer{
+  margin:0 auto;
+  margin-top:30%;
+ 
+  height: 200px;
+}
+.inner{
+  margin:20px auto;
+  width: 70%;
+
+}
+.text_pwd{
+  
+  width:40%;
+ 
+  text-align: center;
+  
+
+   float: left;
+}
+.old_pwd{
+  width:50%;
+  border:1px solid #666;
+  border-radius: 30px;
+  padding-left: 10px;
+  float: left;
+}

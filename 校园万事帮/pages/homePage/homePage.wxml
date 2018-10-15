@@ -1,0 +1,144 @@
+<view class="navbar"> 
+      <text wx:for="{{navbar}}" data-idx="{{index}}" class="top{{currentTab==index ?'1':'2'}}"  wx:key="unique"bindtap="navbarTap">{{item}} </text> 
+</view> 
+
+
+<view hidden="{{currentTab!==0}}" class="outer">
+  <view class="inner">
+   <template name="temp1">
+    <view class="temp1">
+      
+        <image class="task_img" src="http://localhost:8080/helloWorld/student/img?name={{stu_img}}"></image>
+      
+      <view class="task_name">
+        <view class="task_name1">
+          任务名称：{{task_name}}
+        </view>
+        <view class="task_name2">
+          任务内容：{{task_content}}
+        </view>
+
+      </view>
+      <view class="people">
+        人数：{{task_people}}
+      </view>
+      <view class="people">
+        佣金：{{task_money}}
+      </view>
+      <view class="people">
+        已接受{{people==null?'0':people}}人
+      </view>
+      <view class="people">
+        待接受{{people==null?task_people:task_people-people}}人
+      </view>
+      <view class="people">
+        发布人ID {{task_putID}}
+      </view>
+      <view class="people">
+        {{task_taskTime}}
+      </view>
+      
+
+    </view>
+    
+     
+  </template>
+
+      <view  wx:for ='{{DataList1}}' class="list" bindtap='click'data-id="{{item.task_id}}">
+        <template is="temp1" data="{{...item}}"> </template>
+      </view>
+    
+  </view> 
+</view>
+
+
+<view hidden="{{currentTab!==1}}" class="outer">
+  <view class="inner">
+   <template name="temp2">
+    <view class="temp1">
+      <image class="task_img" src="http://localhost:8080/helloWorld/student/img?name={{stu_img}}"></image>
+      <view class="task_name">
+        <view class="task_name1">
+          任务名称：{{task_name}}
+        </view>
+        <view class="task_name2">
+          任务内容：{{task_content}}
+        </view>
+
+      </view>
+      <view class="people">
+        人数：{{task_people}}
+      </view>
+      <view class="people">
+        佣金：{{task_money}}
+      </view>
+      <view class="people">
+        已接受{{people==null?'0':people}}人
+      </view>
+      <view class="people">
+        待接受{{people==null?task_people:task_people-people}}人
+      </view>
+      <view class="people">
+        发布人ID {{task_putID}}
+      </view>
+      <view class="people">
+        {{task_taskTime}}
+      </view>
+      
+
+    </view>
+    
+     
+  </template>
+
+      <view  wx:for ='{{DataList2}}' class="list" bindtap='click'data-id="{{item.task_id}}">
+        <template is="temp2" data="{{...item}}"> </template>
+      </view>
+    
+  </view> 
+</view>
+<view hidden="{{currentTab!==2}}" class="outer">
+  <view class="inner">
+   <template name="temp3">
+    <view class="temp1">
+      <image class="task_img" src="http://localhost:8080/helloWorld/student/img?name={{stu_img}}"></image>
+      <view class="task_name">
+        <view class="task_name1">
+          任务名称：{{task_name}}
+        </view>
+        <view class="task_name2">
+          任务内容：{{task_content}}
+        </view>
+
+      </view>
+      <view class="people">
+        人数：{{task_people}}
+      </view>
+      <view class="people">
+        佣金：{{task_money}}
+      </view>
+      <view class="people">
+        已接受{{people==null?'0':people}}人
+      </view>
+      <view class="people">
+        待接受{{people==null?task_people:task_people-people}}人
+      </view>
+      <view class="people">
+        发布人ID {{task_putID}}
+      </view>
+      <view class="people">
+        {{task_taskTime}}
+      </view>
+      
+
+    </view>
+    
+     
+  </template>
+
+      <view  wx:for ='{{DataList3}}' class="list" bindtap='click'data-id="{{item.task_id}}">
+        <template is="temp3" data="{{...item}}"> </template>
+      </view>
+    
+  </view> 
+</view>

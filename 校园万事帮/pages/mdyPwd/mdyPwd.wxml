@@ -1,0 +1,14 @@
+<view class="outer">
+  <view class="inner">
+    <text class='text_pwd'>旧密码：</text><input class="old_pwd" /><text>\n</text>
+  </view>
+   <view class="inner">
+    <text class='text_pwd'>新密码：</text><input class="old_pwd" /><text>\n</text>
+  </view>
+   <view class="inner">
+    <text class='text_pwd'>确认密码：</text><input class="old_pwd" /><text>\n</text>
+  </view>
+  <view class="inner">
+    <button>更改</button>
+  </view>
+</view>

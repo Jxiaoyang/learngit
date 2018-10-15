@@ -1,0 +1,92 @@
+<!--pages/mdyInformation/mdyInformation.wxml-->
+<view class = "class_img" bindtap='upload'>
+  <view class = "img_text">
+    <text>头像</text>
+  </view>
+  
+    <image class="img_true" src='{{img}}'></image>
+  
+</view>
+
+<!--姓名-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>姓名</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_name}}</text>
+  </view>
+</view>
+
+<!--性别-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>性别</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_sex}}</text>
+  </view>
+</view>
+<!--学号-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>学号</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_id}}</text>
+  </view>
+</view>
+<!--校区-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>校区</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_area}}</text>
+  </view>
+</view>
+
+<!--院系-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>院系</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_yard}}</text>
+  </view>
+</view>
+
+<!--专业-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>专业</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_major}}</text>
+  </view>
+</view>
+
+<!--班级-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>班级</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_class}}</text>
+  </view>
+</view>
+
+<!--手机号-->
+<view class = "class_name">
+  <view class = "name_text">
+    <text>手机号</text>
+  </view>
+  <view class="name_true">
+    <text>{{list.stu_phone}}</text>
+  </view>
+</view>
+<!--只可修改头像，和密码-->
+<button bindtap='toUpload'>保存</button>
+
+
+

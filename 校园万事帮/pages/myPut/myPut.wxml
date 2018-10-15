@@ -1,0 +1,4 @@
+
+<view class="navbar"> 
+      <text wx:for="{{navbar}}" data-idx="{{index}}" class="top{{currentTab==index ?'1':'2'}}"  wx:key="unique"bindtap="navbarTap">{{item}} </text> 
+</view> 

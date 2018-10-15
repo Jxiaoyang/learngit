@@ -1,0 +1,50 @@
+{
+  "pages":[
+    "pages/mdyPwd/mdyPwd",
+    "pages/index/index",
+    "pages/myPut/myPut",
+    "pages/myMission/myMission",
+    "pages/homePage/homePage",
+    "pages/decription/decription",
+   "pages/mdyInformation/mdyInformation",
+    
+    "pages/demand/demand",
+    "pages/personal/personal",
+   
+   
+   
+   
+    "pages/logs/logs"     
+    
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "校园万事帮",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "selectedColor": "red",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/homePage/homePage"
+    
+      },
+      {
+        "text": "发布需求",
+        "pagePath": "pages/demand/demand"
+      
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/personal/personal"
+     
+      }
+    ]
+  },
+  "debug":"true"
+  
+  
+}

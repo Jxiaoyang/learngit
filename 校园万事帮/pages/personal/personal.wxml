@@ -1,0 +1,12 @@
+<!--pages/personal/personal.wxml-->
+<text>个人中心</text>
+<image src = "../../image/default.jpg"></image>
+<text>个人信息\n</text>
+<button bindtap='mdyInformation'>个人信息</button>
+<button>已完成的任务</button>
+<button bindtap='myPut'>已发布任务</button>
+<button bindtap="myMission">已接受的任务</button>
+<button bindtap="mdyPwd">修改密码</button>
+
+
+

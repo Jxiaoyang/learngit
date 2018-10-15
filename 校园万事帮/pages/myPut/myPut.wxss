@@ -1,0 +1,18 @@
+/* pages/myPut/myPut.wxss */
+.top1{
+  color: #FFCC00;
+  width:33%;
+  text-align: center;
+  display: block;
+  float:left;
+  border-bottom:#FFCC00 1px solid;
+}
+  
+.top2{
+  color:blue;
+  width:33%;
+  text-align: center;
+  float:left;
+  
+  
+}
