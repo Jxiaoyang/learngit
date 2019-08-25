@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper  namespace="com.jxy.ssm.mapper.TaskMapper">
+
+	<insert id="addTask" parameterType="task" >
+		INSERT into tb_task (task_type,task_name,task_content,task_pricontent,task_people,task_money,task_taskTime,task_putID) 
+		 values
+		(#{task_type},#{task_name},#{task_content},#{task_pricontent},#{task_people},#{task_money},#{task_taskTime},#{task_putID})
+	</insert>
+	<select id="getTask" resultType="task">
+		SELECT * FROM  tb_task where task_receive='0'
+	</select>
+	
+	<!-- homePage 页面显示的根据任务类型 -->
+	<select id="getTaskByType" resultType="com.jxy.ssm.vo.TaskPeople" parameterType="Integer">
+
+		SELECT t3.*,tb_student.stu_img FROM tb_student, tb_task t3
+		where t3.task_receive='0' and t3.task_type=#{value}  and tb_student.stu_id = t3.task_putID order by t3.task_id desc
+	</select>
+	
+	<!-- myPut 页面显示的根据是否接受完成显示信息 -->
+	<select id="getTaskByStatus" resultType = "com.jxy.ssm.vo.TaskPeople">
+		SELECT t1.*,t2.stu_img  from tb_task t1,tb_student t2 
+		where  t1.task_putId = #{student_id} 
+		and t1.task_receive=#{status} and t1.task_accomplish=#{task_accomplish}
+		and t1.task_putID = t2.stu_id
+		
+		
+		
+	</select>
+	<!-- 获得详细信息st_flag='0' 为了有人接受后又退出，影响最后人数接受的统计 -->
+	<select id="getTaskById" resultType="com.jxy.ssm.vo.TaskPeople" >
+						
+				SELECT t3.*,tb_student.stu_img FROM tb_student, 
+				(	select t1.*,t2.people from
+					(select * from tb_task where task_id = #{task_id}) t1
+					left join
+					(select st_id,count(st_id) people from tb_st where st_flag='0' group by st_id having st_id =#{task_id}) t2
+					on 1=1
+				) 	
+				t3
+		where tb_student.stu_id = t3.task_putID
+		
+	</select>
+	<!-- 添加接受任务者 -->
+	<insert id = 'addReceive'  parameterType="com.jxy.ssm.po.St">
+		INSERT INTO tb_st (st_id,st_receiveid,st_receiveTime) values(#{st_id},#{st_receiveid},#{st_receiveTime})
+	</insert>
+	<!-- 判断是否已经接受过 -->
+	<select id = 'getReceiveById' resultType="Integer" parameterType="com.jxy.ssm.po.St">
+		SELECT count(*) FROM tb_st where st_id=#{st_id} and st_receiveid=#{st_receiveid}
+	</select>
+	<!-- 设置是否接受完 -->
+	<update id = "setReceive">
+		UPDATE  tb_task SET task_receive = #{task_receive} where task_id = #{task_id}
+	</update>
+	<!-- 查看已接人有谁  头像 姓名，学生id，接受时间-->
+	<select id="getPeople" resultType="com.jxy.ssm.vo.WhoReceive">
+
+		select t1.stu_img whoImg,t1.stu_name whoName,t2.st_receiveid whoId,t2.st_receiveTime receiveTime from tb_st t2,tb_student t1 
+		where t2.st_receiveid = t1.stu_id  and  t2.st_id = #{task_id} and t2.st_flag = '0'
+		
+	</select>
+	<!-- 查找我接受的任务 -->
+	<select id = "getMyReceive" resultType="com.jxy.ssm.vo.TaskPeople">
+		select t1.*,t2.stu_img from tb_student t2,
+			(select t2.* from(SELECT st_id from  tb_st where st_receiveid = #{st_receiveid} and st_flag = '0') t1
+				left join tb_task t2 
+				on t1.st_id = t2.task_id) t1
+			where t1.task_putID = t2.stu_id
+	</select>
+	
+	
+	<!-- 撤回任务 -->
+	<update id="retractTask">
+		UPDATE tb_task set task_receive = '2' where task_id = #{task_id}
+	</update>
+	<!-- 完成任务 -->
+	<update id = "finishTask">
+		UPDATE tb_task set task_accomplish = '1' where task_id = #{task_id}
+	</update>
+	<!-- 删除记录 -->
+	<update id = "deleteTask">
+		UPDATE tb_task set task_accomplish = '2' where task_id = #{task_id}
+	</update>
+	<!-- 放弃任务 -->
+	<update id="abandonTask">
+		UPDATE tb_st set st_flag ='1' where st_id = #{task_id} and st_receiveid =#{st_receiveid}
+	</update>
+	<!-- 我的任务页面删除记录 -->
+	<update id="amputateTask">
+		UPDATE tb_st set st_flag ='2' where st_id = #{task_id}
+	</update>
+	<!-- 判断是否撤销 -->
+	<select id="if_retract" resultType="Integer">
+		SELECT task_receive from tb_task where task_id = #{task_id}
+	</select>
+	<!-- 判断是否放弃 -->
+	<select id="if_abandon" resultType="Integer">
+		select task_receive from tb_task  where task_id = #{task_id} 
+	</select>
+	<!-- 判断是否完成 -->
+	<select id="if_finish" resultType="Integer">
+		select task_accomplish from tb_task where task_id = #{task_id}
+	</select>
+	<!-- 判断是否被接受，不能撤销任务 -->
+	<select id ="if_receive" resultType="Integer">
+		SELECT count(*) FROM tb_st where st_id=#{task_id} and st_flag ='0' 
+	</select>
+	
+	
+	
+
+	
+
+</mapper>

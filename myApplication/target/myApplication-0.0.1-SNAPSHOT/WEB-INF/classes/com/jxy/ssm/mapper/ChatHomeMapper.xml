@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxy.ssm.mapper.ChatHomeMapper">
+
+	<!-- 新建聊天室文件 -->
+	<insert id="createChat" parameterType="chatHome">
+		INSERT INTO  tb_chathome (ch_id,chatPath) values(#{ch_id},#{chatPath})
+	</insert>
+	<select id="getChat" resultType="chatHome" parameterType="String">
+		SELECT * FROM tb_chathome where ch_id =  #{ch_id}
+	</select>
+	<update id="updateChat" parameterType="chatHome">
+		UPDATE tb_chathome SET  chatPath = #{chatPath} WHERE ch_id =#{ch_id}
+	</update>
+	<select id="countChat" resultType="Integer" parameterType="chatHome">
+		
+		SELECT COUNT(*) FROM tb_chathome where ch_id = #{ch_id}
+		
+	</select>
+
+</mapper>

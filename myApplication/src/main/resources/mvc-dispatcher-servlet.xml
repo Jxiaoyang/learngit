@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns ="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+	 	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	 	http://www.springframework.org/schema/websocket
+	 	http://www.springframework.org/schema/websocket/spring-websocket.xsd">  
+	
+<!-- 激活@Required  @Autowired,jsr 250's @PostConstruct,@PreDestroy and @Resource 等标注 -->
+<!--<context:annotation-config/> 这个 可以省略， 是下面的子集 -->
+<!-- 扫面 注解， 有两个子标签
+	父标签有个属性为use-default-filters  默认为true，   当为false 时，就会扫描指定的包,且只扫描表达式的注解，    
+	<context:include-filter>  用来扫面指定的注解
+	<context:exclude-filter> 用来不扫面指定的注解
+
+	 -->
+	<context:component-scan  base-package="com.jxy.ssm.controller">  
+
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+  
+<mvc:annotation-driven>
+
+        <mvc:message-converters register-defaults="true">
+
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+
+                <constructor-arg value="UTF-8" />
+
+            </bean>
+
+        </mvc:message-converters>
+
+    </mvc:annotation-driven>
+
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name ="viewClass" value ="org.springframework.web.servlet.view.JstlView" />
+	<!-- 前缀，和后缀 -->
+	<property name = "prefix" value ="/WEB-INF/jsps/"/>
+	<property name="suffix" value =".jsp"/>
+</bean>
+<!-- 上传文件 -->
+<bean id="multipartResolver"  
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <!-- 上传文件大小上限，单位为字节（10MB） -->
+        <property name="maxUploadSize">  
+            <value>10485760</value>  
+        </property>  
+        <!-- 请求的编码格式，必须和jSP的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1 -->
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+</bean>
+
+<!-- 配置拦截器 -->
+ <mvc:interceptors>
+	<mvc:interceptor>
+		<!-- 配置拦截的路径 /** 表示所有路径 -->
+		<mvc:mapping path="/**"/>
+		<!-- 这个标签标识不拦截的路径 -->
+	
+		<mvc:exclude-mapping path="/login/*"/>
+		<mvc:exclude-mapping path="/student/img"/>
+		
+		<mvc:exclude-mapping path="/websocket"/>
+		
+		<!--<mvc:exclude-mapping path="/task/*"/>  -->
+		<!-- 这个类为拦截器的执行逻辑 --> 
+		<bean class="com.jxy.ssm.interceptor.LoginInterceptor"/>
+	</mvc:interceptor>
+</mvc:interceptors> 
+	
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.jxy.ssm.po.Student" alias="student"/>
+		<typeAlias type="com.jxy.ssm.po.Task" alias="task"/>
+		<typeAlias type="com.jxy.ssm.po.ChatHome" alias="chatHome"/>
+	</typeAliases>
+	<mappers>
+		  <!-- <mapper resource="com/jxy/ssm/mapper/UserMapper.xml"/> -->  
+		  <package name="com.jxy.ssm.mapper"/> 
+	</mappers>
+	
+</configuration>
+

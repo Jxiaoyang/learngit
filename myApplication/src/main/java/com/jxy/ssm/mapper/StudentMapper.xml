@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxy.ssm.mapper.StudentMapper">
+    
+    
+    
+    <update id="setStudentPwd" parameterType="student">
+        UPDATE tb_student 
+        set stu_password = #{stu_password} where stu_id = #{stu_id}
+    </update>
+    <select id="findById" parameterType="String" resultType="student">
+    	SELECT * from tb_student where stu_id = #{stu_id};
+    </select>
+    <update id="setStudentImg" parameterType="student">
+    	UPDATE tb_student set stu_img=#{stu_img} where stu_id =#{stu_id}
+    </update>
+    <select id="getReport"  parameterType="String"  resultType="student">
+				select t2.* from(
+		select * from tb_st t1  where st_id =#{task_Id} and st_flag = '0'
+		)t1
+		left join
+			tb_student t2 
+			on t1.st_receiveid = t2.stu_id
+	</select>
+  	
+</mapper>
